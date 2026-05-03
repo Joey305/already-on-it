@@ -1,0 +1,1100 @@
+<div id="quoteEstimatorShell">
+  <button
+    id="openEstimatorBtn"
+    type="button"
+    aria-label="Open price estimator"
+    class="estimator-fab group"
+  >
+    <span class="estimator-fab-ring"></span>
+    <img
+      src="{{ url_for('static', filename='images/already_on_it_logo.png') }}"
+      alt="Estimate your job"
+      class="estimator-fab-image"
+      loading="lazy"
+      decoding="async"
+    >
+    <span class="estimator-fab-tooltip">Estimate Your Job</span>
+  </button>
+
+  <div id="estimatorModal" class="estimator-modal hidden" aria-hidden="true">
+    <div class="estimator-backdrop" data-close-estimator></div>
+
+    <div class="estimator-panel" role="dialog" aria-modal="true" aria-labelledby="estimatorTitle">
+      <button type="button" class="estimator-close" id="closeEstimatorBtn" aria-label="Close estimator">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18"></path>
+          <path d="M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div class="estimator-header">
+        <div class="estimator-kicker">Quick Price Estimator</div>
+        <h2 id="estimatorTitle">Get a ballpark estimate for your job in under 2 minutes</h2>
+        <p>
+          Answer a few quick questions and we’ll give you a realistic estimated price range
+          based on the type of work, the size of the job, and any special conditions.
+          This is a helpful starting point so you can plan your project with confidence.
+        </p>
+      </div>
+
+      <div class="estimator-progress-wrap">
+        <div class="estimator-progress-labels">
+          <span id="estimatorStepLabel">Step 1 of 6</span>
+          <span id="estimatorStepName">Choose a service</span>
+        </div>
+        <div class="estimator-progress-bar">
+          <div id="estimatorProgressFill" class="estimator-progress-fill"></div>
+        </div>
+      </div>
+
+      <form id="estimatorForm" class="estimator-body">
+        <section class="estimator-step active" data-step="0">
+          <h3>What kind of help do you need?</h3>
+          <p class="estimator-subtext">
+            Choose the option that best matches your project so we can give you the most accurate starting range.
+          </p>
+          <div class="estimator-grid service-grid">
+            <label class="estimator-choice-card">
+              <input type="radio" name="serviceType" value="general_repairs" checked>
+              <span>
+                <strong>General Repairs</strong>
+                <small>Drywall, doors, trim, hardware, and small household fixes</small>
+              </span>
+            </label>
+            <label class="estimator-choice-card">
+              <input type="radio" name="serviceType" value="installations">
+              <span>
+                <strong>Installations</strong>
+                <small>TVs, shelves, fixtures, furniture, and device installs</small>
+              </span>
+            </label>
+            <label class="estimator-choice-card">
+              <input type="radio" name="serviceType" value="plumbing">
+              <span>
+                <strong>Plumbing Help</strong>
+                <small>Minor leaks, faucet replacements, toilet fixes, and similar work</small>
+              </span>
+            </label>
+            <label class="estimator-choice-card">
+              <input type="radio" name="serviceType" value="electrical">
+              <span>
+                <strong>Electrical Fixes</strong>
+                <small>Lights, outlets, switches, and replacement work</small>
+              </span>
+            </label>
+            <label class="estimator-choice-card">
+              <input type="radio" name="serviceType" value="smart_home">
+              <span>
+                <strong>Smart Home</strong>
+                <small>Locks, cameras, doorbells, automation, and setup</small>
+              </span>
+            </label>
+            <label class="estimator-choice-card">
+              <input type="radio" name="serviceType" value="property_maintenance">
+              <span>
+                <strong>Property / HOA / Community</strong>
+                <small>Grouped tasks, common areas, and ongoing maintenance support</small>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="estimator-step" data-step="1">
+          <h3>How big does the job feel?</h3>
+          <p class="estimator-subtext">
+            The size of the job helps shape your estimate. A quick fix costs less than a project
+            with multiple steps or installations.
+          </p>
+          <div class="estimator-grid">
+            <label class="estimator-choice-card">
+              <input type="radio" name="jobSize" value="small" checked>
+              <span><strong>Small</strong><small>A quick job or one main issue</small></span>
+            </label>
+            <label class="estimator-choice-card">
+              <input type="radio" name="jobSize" value="medium">
+              <span><strong>Medium</strong><small>A project with a few steps or a moderate setup</small></span>
+            </label>
+            <label class="estimator-choice-card">
+              <input type="radio" name="jobSize" value="large">
+              <span><strong>Large</strong><small>Several tasks, longer labor time, or more coordination</small></span>
+            </label>
+          </div>
+
+          <div class="estimator-inline-group">
+            <label>
+              <span>How many things would you like help with?</span>
+              <input type="range" id="taskCount" name="taskCount" min="1" max="8" value="1">
+            </label>
+            <div class="range-readout"><strong id="taskCountValue">1</strong> item(s)</div>
+          </div>
+        </section>
+
+        <section class="estimator-step" data-step="2">
+          <h3>Tell us a little about the property</h3>
+          <p class="estimator-subtext">
+            A few site details can affect labor time and overall cost, especially for access,
+            parking, or older homes.
+          </p>
+          <div class="estimator-grid">
+            <label class="estimator-choice-card compact">
+              <input type="checkbox" name="siteFactors" value="stairs">
+              <span><strong>The work area is upstairs or requires stairs</strong></span>
+            </label>
+            <label class="estimator-choice-card compact">
+              <input type="checkbox" name="siteFactors" value="parking">
+              <span><strong>Parking or carrying materials may be difficult</strong></span>
+            </label>
+            <label class="estimator-choice-card compact">
+              <input type="checkbox" name="siteFactors" value="older_home">
+              <span><strong>It’s an older home or conditions are uncertain</strong></span>
+            </label>
+            <label class="estimator-choice-card compact">
+              <input type="checkbox" name="siteFactors" value="after_hours">
+              <span><strong>I may need evening or special scheduling</strong></span>
+            </label>
+          </div>
+
+          <div class="estimator-grid two-col">
+            <label>
+              <span>Property type</span>
+              <select name="propertyType" id="propertyType">
+                <option value="single_family">Single-family home</option>
+                <option value="condo">Condo / apartment</option>
+                <option value="rental">Rental unit</option>
+                <option value="hoa">HOA / association / community</option>
+                <option value="commercial">Commercial / mixed use</option>
+              </select>
+            </label>
+            <label>
+              <span>Where are you in the process?</span>
+              <select name="readinessLevel" id="readinessLevel">
+                <option value="ready">I’m ready to book soon</option>
+                <option value="mostly_ready">I mostly know what I need</option>
+                <option value="needs_help">I’d like help figuring out the scope</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="estimator-step" data-step="3">
+          <h3>Materials and timing</h3>
+          <p class="estimator-subtext">
+            Let us know whether you already have materials and how soon you’d like the work done.
+            This helps us build a more realistic estimate range.
+          </p>
+          <div class="estimator-grid two-col">
+            <label>
+              <span>Do you already have the materials?</span>
+              <select name="materialsStatus" id="materialsStatus">
+                <option value="customer_ready">I already have materials</option>
+                <option value="need_basic">I need help with a few basic materials</option>
+                <option value="need_full">I’d like full help sourcing materials</option>
+              </select>
+            </label>
+            <label>
+              <span>When would you like the work done?</span>
+              <select name="urgency" id="urgency">
+                <option value="flexible">Flexible</option>
+                <option value="this_week">This week</option>
+                <option value="urgent">As soon as possible</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="estimator-grid two-col">
+            <label>
+              <span>Can you send photos of the job?</span>
+              <select name="hasPhotos" id="hasPhotos">
+                <option value="yes">Yes, I can send photos</option>
+                <option value="no">No, not yet</option>
+              </select>
+            </label>
+            <label>
+              <span>Would you like an onsite quote first?</span>
+              <select name="onsiteNeed" id="onsiteNeed">
+                <option value="no">No, an estimate is enough for now</option>
+                <option value="maybe">Maybe, depending on the range</option>
+                <option value="yes">Yes, I’d like an onsite quote</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="estimator-step" data-step="4">
+          <h3>Anything else you’d like included?</h3>
+          <p class="estimator-subtext">
+            Adding related tasks now can give you a more complete estimate and may save time later.
+          </p>
+          <div class="estimator-grid">
+            <label class="estimator-choice-card compact">
+              <input type="checkbox" name="addons" value="haulaway">
+              <span><strong>Cleanup or haul-away</strong></span>
+            </label>
+            <label class="estimator-choice-card compact">
+              <input type="checkbox" name="addons" value="patch_paint">
+              <span><strong>Patchwork or touch-up finishing</strong></span>
+            </label>
+            <label class="estimator-choice-card compact">
+              <input type="checkbox" name="addons" value="multiple_rooms">
+              <span><strong>Work in multiple rooms or areas</strong></span>
+            </label>
+            <label class="estimator-choice-card compact">
+              <input type="checkbox" name="addons" value="tech_setup">
+              <span><strong>Device pairing or smart-home setup</strong></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="estimator-step" data-step="5">
+          <h3>Your estimated price range</h3>
+          <p class="estimator-subtext">
+            Based on your answers, here’s a realistic ballpark range for your project.
+            Final pricing may change if there are hidden conditions, specialty materials,
+            or additional work needed onsite.
+          </p>
+
+          <div class="estimate-result-card">
+            <div class="estimate-pill" id="estimateTierPill">Estimated Range</div>
+            <div class="estimate-price" id="estimatePrice">$149 – $229</div>
+            <div class="estimate-summary" id="estimateSummary">
+              Based on your answers, this looks like a straightforward project with a typical service range.
+            </div>
+
+            <div class="estimate-meta-grid">
+              <div>
+                <span class="meta-label">Service</span>
+                <strong id="summaryService">General Repairs</strong>
+              </div>
+              <div>
+                <span class="meta-label">Scope</span>
+                <strong id="summaryScope">Small / 1 item</strong>
+              </div>
+              <div>
+                <span class="meta-label">Property</span>
+                <strong id="summaryProperty">Single-family home</strong>
+              </div>
+              <div>
+                <span class="meta-label">Recommended next step</span>
+                <strong id="summaryLeadPath">You’re likely ready for a quick booking</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="estimate-notes">
+            <div class="estimate-note accent">
+              <strong id="strategyTitle">Best next step:</strong>
+              <p id="strategyText">Send a few photos and any helpful details so we can narrow the range and help you book faster.</p>
+            </div>
+            <div class="estimate-note">
+              <strong>Important:</strong>
+              <p>
+                Final pricing can change if we discover hidden damage, code-related issues,
+                specialty materials, or added work once the job is reviewed onsite.
+              </p>
+            </div>
+          </div>
+
+          <div class="estimator-grid two-col final-contact-grid">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="customerName" id="customerName" placeholder="Your name">
+            </label>
+            <label>
+              <span>Phone or email</span>
+              <input type="text" name="customerContact" id="customerContact" placeholder="Best way to reach you">
+            </label>
+          </div>
+
+          <label class="full-width-field">
+            <span>Anything else we should know?</span>
+            <textarea name="customerNotes" id="customerNotes" rows="4" placeholder="Add dimensions, brand info, problem details, gate codes, HOA notes, or anything else helpful"></textarea>
+          </label>
+
+          <div class="estimate-actions">
+            <a id="estimatorWhatsAppLink" href="#" target="_blank" rel="noopener noreferrer" class="estimate-action primary">Send my estimate on WhatsApp</a>
+            <a id="estimatorEmailLink" href="#" class="estimate-action secondary">Email my estimate</a>
+          </div>
+        </section>
+
+        <div class="estimator-footer">
+          <button type="button" id="estimatorPrevBtn" class="estimator-nav-btn secondary" disabled>Back</button>
+          <button type="button" id="estimatorNextBtn" class="estimator-nav-btn primary">Next</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  #quoteEstimatorShell {
+    --estimator-navy: #0f172a;
+    --estimator-slate: #475569;
+    --estimator-border: #dbe4ee;
+    --estimator-bg: #f8fafc;
+    --estimator-white: #ffffff;
+    --estimator-orange: #c05621;
+    --estimator-orange-dark: #9c4221;
+    --estimator-green: #25d366;
+    --estimator-shadow: 0 22px 60px rgba(15, 23, 42, 0.18);
+  }
+
+  .estimator-fab {
+    position: fixed;
+    right: 1.4rem;
+    bottom: 6.55rem;
+    width: 68px;
+    height: 68px;
+    border: 0;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 55;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    overflow: visible;
+  }
+
+  .estimator-fab:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.24);
+  }
+
+  .estimator-fab-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(192, 86, 33, 0.5), rgba(37, 211, 102, 0.35));
+    z-index: 0;
+    filter: blur(0.2px);
+  }
+
+  .estimator-fab-image {
+    position: relative;
+    z-index: 1;
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 9999px;
+    background: #fff;
+    padding: 3px;
+  }
+
+  .estimator-fab-tooltip {
+    position: absolute;
+    right: 82px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    background: rgba(15, 23, 42, 0.94);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.6rem 0.85rem;
+    border-radius: 9999px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+  }
+
+  .estimator-fab:hover .estimator-fab-tooltip,
+  .estimator-fab:focus-visible .estimator-fab-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-4px);
+  }
+
+  .estimator-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+  }
+
+  .estimator-modal.hidden {
+    display: none;
+  }
+
+  .estimator-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(6px);
+  }
+
+  .estimator-panel {
+    position: relative;
+    width: min(960px, calc(100vw - 1.5rem));
+    max-height: calc(100vh - 1.5rem);
+    margin: 0.75rem auto;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 28px;
+    box-shadow: var(--estimator-shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+
+  .estimator-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.92);
+    color: #0f172a;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  }
+
+  .estimator-close svg { width: 20px; height: 20px; margin: 11px; }
+
+  .estimator-header {
+    padding: 2rem 2rem 1rem;
+    background:
+      radial-gradient(circle at top left, rgba(192, 86, 33, 0.14), transparent 32%),
+      radial-gradient(circle at top right, rgba(37, 211, 102, 0.12), transparent 26%),
+      linear-gradient(180deg, #fff7ed 0%, rgba(255,255,255,0.96) 65%);
+  }
+
+  .estimator-kicker {
+    display: inline-flex;
+    padding: 0.45rem 0.8rem;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.8);
+    color: var(--estimator-orange);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.74rem;
+    margin-bottom: 1rem;
+  }
+
+  .estimator-header h2 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.65rem, 3vw, 2.5rem);
+    line-height: 1.08;
+    color: var(--estimator-navy);
+  }
+
+  .estimator-header p,
+  .estimator-subtext,
+  .estimate-summary,
+  .estimate-note p {
+    color: var(--estimator-slate);
+  }
+
+  .estimator-progress-wrap {
+    padding: 0 2rem 1rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,250,252,0.92) 100%);
+  }
+
+  .estimator-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.92rem;
+    color: var(--estimator-slate);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+
+  .estimator-progress-bar {
+    height: 10px;
+    border-radius: 9999px;
+    background: #e2e8f0;
+    overflow: hidden;
+  }
+
+  .estimator-progress-fill {
+    height: 100%;
+    width: 16.66%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #c05621 0%, #25d366 100%);
+    transition: width 0.25s ease;
+  }
+
+  .estimator-body {
+    padding: 1.25rem 2rem 0;
+    overflow-y: auto;
+  }
+
+  .estimator-step { display: none; }
+  .estimator-step.active { display: block; }
+
+  .estimator-step h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.35rem;
+    color: var(--estimator-navy);
+  }
+
+  .estimator-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.95rem;
+    margin-top: 1.1rem;
+  }
+
+  .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .estimator-choice-card {
+    position: relative;
+    border: 1px solid var(--estimator-border);
+    border-radius: 20px;
+    background: rgba(255,255,255,0.88);
+    padding: 1rem 1rem 1rem 3rem;
+    cursor: pointer;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  .estimator-choice-card.compact {
+    min-height: 74px;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .estimator-choice-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+    border-color: rgba(192, 86, 33, 0.5);
+  }
+
+  .estimator-choice-card input {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    accent-color: var(--estimator-orange);
+  }
+
+  .estimator-choice-card strong,
+  .estimate-meta-grid strong,
+  .range-readout strong,
+  .estimate-note strong,
+  .meta-label {
+    color: var(--estimator-navy);
+  }
+
+  .estimator-choice-card small {
+    display: block;
+    color: var(--estimator-slate);
+    margin-top: 0.3rem;
+    line-height: 1.35;
+  }
+
+  .estimator-inline-group {
+    margin-top: 1.2rem;
+    padding: 1rem 1.1rem;
+    border-radius: 18px;
+    border: 1px solid var(--estimator-border);
+    background: rgba(255,255,255,0.85);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .estimator-inline-group label {
+    display: block;
+    width: 100%;
+  }
+
+  .estimator-inline-group span,
+  .full-width-field span,
+  .estimator-grid label span {
+    display: block;
+    font-weight: 700;
+    color: var(--estimator-navy);
+    margin-bottom: 0.55rem;
+  }
+
+  .range-readout {
+    white-space: nowrap;
+    padding-top: 1.4rem;
+  }
+
+  .estimator-grid label,
+  .full-width-field {
+    display: block;
+  }
+
+  .estimator-grid select,
+  .final-contact-grid input,
+  .full-width-field textarea {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid var(--estimator-border);
+    background: #fff;
+    padding: 0.9rem 1rem;
+    font: inherit;
+    color: var(--estimator-navy);
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .estimator-grid select:focus,
+  .final-contact-grid input:focus,
+  .full-width-field textarea:focus {
+    border-color: rgba(192, 86, 33, 0.8);
+    box-shadow: 0 0 0 4px rgba(192, 86, 33, 0.12);
+  }
+
+  .estimate-result-card {
+    margin-top: 1rem;
+    border-radius: 24px;
+    padding: 1.35rem;
+    background:
+      radial-gradient(circle at top right, rgba(37, 211, 102, 0.12), transparent 20%),
+      radial-gradient(circle at top left, rgba(192, 86, 33, 0.14), transparent 24%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid var(--estimator-border);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  }
+
+  .estimate-pill {
+    display: inline-flex;
+    padding: 0.45rem 0.78rem;
+    border-radius: 9999px;
+    background: rgba(15, 23, 42, 0.06);
+    color: var(--estimator-navy);
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .estimate-price {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1;
+    font-weight: 800;
+    color: var(--estimator-orange-dark);
+    margin: 0.85rem 0 0.6rem;
+  }
+
+  .estimate-meta-grid {
+    margin-top: 1.15rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .meta-label {
+    display: block;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.35rem;
+    color: #64748b;
+  }
+
+  .estimate-notes {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .estimate-note {
+    border-radius: 18px;
+    border: 1px solid var(--estimator-border);
+    background: rgba(255,255,255,0.84);
+    padding: 1rem 1rem 0.9rem;
+  }
+
+  .estimate-note.accent {
+    background: linear-gradient(180deg, #fff7ed 0%, #ffffff 100%);
+    border-color: rgba(192, 86, 33, 0.22);
+  }
+
+  .final-contact-grid,
+  .full-width-field,
+  .estimate-actions {
+    margin-top: 1rem;
+  }
+
+  .estimate-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .estimate-action,
+  .estimator-nav-btn {
+    border-radius: 9999px;
+    text-align: center;
+    font-weight: 800;
+    padding: 0.95rem 1.1rem;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  }
+
+  .estimate-action:hover,
+  .estimator-nav-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+
+  .estimate-action.primary,
+  .estimator-nav-btn.primary {
+    background: linear-gradient(180deg, #c05621 0%, #9c4221 100%);
+    color: #fff;
+    box-shadow: 0 12px 24px rgba(156, 66, 33, 0.22);
+  }
+
+  .estimate-action.secondary,
+  .estimator-nav-btn.secondary {
+    background: #fff;
+    color: var(--estimator-navy);
+    border: 1px solid var(--estimator-border);
+  }
+
+  .estimator-footer {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 2rem 1.25rem;
+    background: linear-gradient(180deg, rgba(248,250,252,0.08) 0%, rgba(248,250,252,0.98) 30%);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(226, 232, 240, 0.9);
+    margin-top: 1.25rem;
+  }
+
+  .estimator-nav-btn {
+    min-width: 130px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .estimator-nav-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  @media (max-width: 900px) {
+    .service-grid,
+    .estimator-grid,
+    .two-col,
+    .estimate-actions,
+    .estimate-meta-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .estimator-panel {
+      width: calc(100vw - 0.8rem);
+      max-height: calc(100vh - 0.8rem);
+      margin: 0.4rem auto;
+      border-radius: 24px;
+    }
+
+    .estimator-header,
+    .estimator-progress-wrap,
+    .estimator-body,
+    .estimator-footer {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .estimator-inline-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .range-readout {
+      padding-top: 0;
+    }
+
+    .estimator-fab {
+      width: 62px;
+      height: 62px;
+      right: 1rem;
+      bottom: 6rem;
+    }
+
+    .estimator-fab-image {
+      width: 50px;
+      height: 50px;
+    }
+
+    .estimator-fab-tooltip {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const estimatorModal = document.getElementById('estimatorModal');
+    const openEstimatorBtn = document.getElementById('openEstimatorBtn');
+    const closeEstimatorBtn = document.getElementById('closeEstimatorBtn');
+    const nextBtn = document.getElementById('estimatorNextBtn');
+    const prevBtn = document.getElementById('estimatorPrevBtn');
+    const steps = Array.from(document.querySelectorAll('.estimator-step'));
+    const progressFill = document.getElementById('estimatorProgressFill');
+    const stepLabel = document.getElementById('estimatorStepLabel');
+    const stepName = document.getElementById('estimatorStepName');
+    const taskCount = document.getElementById('taskCount');
+    const taskCountValue = document.getElementById('taskCountValue');
+
+    const SERVICE_LABELS = {
+      general_repairs: 'General Repairs',
+      installations: 'Installations',
+      plumbing: 'Plumbing Help',
+      electrical: 'Electrical Fixes',
+      smart_home: 'Smart Home',
+      property_maintenance: 'Property / HOA / Community'
+    };
+
+    const PROPERTY_LABELS = {
+      single_family: 'Single-family home',
+      condo: 'Condo / apartment',
+      rental: 'Rental unit',
+      hoa: 'HOA / association',
+      commercial: 'Commercial / mixed use'
+    };
+
+    const STEP_NAMES = [
+      'Choose a service',
+      'Describe the size',
+      'Property details',
+      'Materials and timing',
+      'Optional add-ons',
+      'Your estimate'
+    ];
+
+    let currentStep = 0;
+
+    function getFormData() {
+      const form = document.getElementById('estimatorForm');
+      return new FormData(form);
+    }
+
+    function selectedAll(name) {
+      return Array.from(document.querySelectorAll(`[name="${name}"]:checked`)).map(el => el.value);
+    }
+
+    function computeEstimate() {
+      const formData = getFormData();
+      const serviceType = formData.get('serviceType') || 'general_repairs';
+      const jobSize = formData.get('jobSize') || 'small';
+      const taskCountNum = Number(formData.get('taskCount') || 1);
+      const propertyType = formData.get('propertyType') || 'single_family';
+      const readinessLevel = formData.get('readinessLevel') || 'ready';
+      const materialsStatus = formData.get('materialsStatus') || 'customer_ready';
+      const urgency = formData.get('urgency') || 'flexible';
+      const hasPhotos = formData.get('hasPhotos') || 'yes';
+      const onsiteNeed = formData.get('onsiteNeed') || 'no';
+      const siteFactors = selectedAll('siteFactors');
+      const addons = selectedAll('addons');
+
+      const baseMap = {
+        general_repairs: 145,
+        installations: 165,
+        plumbing: 185,
+        electrical: 195,
+        smart_home: 235,
+        property_maintenance: 260
+      };
+
+      const sizeMap = { small: 0, medium: 85, large: 190 };
+      const propertyMap = {
+        single_family: 0,
+        condo: 20,
+        rental: 35,
+        hoa: 110,
+        commercial: 140
+      };
+
+      let low = baseMap[serviceType] + sizeMap[jobSize] + propertyMap[propertyType];
+      low += Math.max(0, taskCountNum - 1) * 28;
+      low += siteFactors.length * 22;
+      low += addons.length * 32;
+
+      if (materialsStatus === 'need_basic') low += 45;
+      if (materialsStatus === 'need_full') low += 110;
+      if (urgency === 'this_week') low += 30;
+      if (urgency === 'urgent') low += 90;
+      if (readinessLevel === 'mostly_ready') low += 15;
+      if (readinessLevel === 'needs_help') low += 70;
+      if (hasPhotos === 'no') low += 18;
+      if (onsiteNeed === 'maybe') low += 25;
+      if (onsiteNeed === 'yes') low += 70;
+
+      let high = Math.round(low * 1.38 + 24);
+      low = Math.round(low);
+
+      let leadPath = 'You’re likely ready for a quick booking';
+      let strategyTitle = 'Best next step:';
+      let strategyText = 'Send a few photos and any helpful details so we can narrow the range and help you book faster.';
+      let summary = 'Based on your answers, this looks like a straightforward project with a typical service range.';
+      let tier = 'Estimated Range';
+
+      const premiumTriggers = [
+        propertyType === 'hoa',
+        propertyType === 'commercial',
+        jobSize === 'large',
+        taskCountNum >= 5,
+        serviceType === 'smart_home' && addons.includes('tech_setup'),
+        onsiteNeed === 'yes'
+      ].filter(Boolean).length;
+
+      if (premiumTriggers >= 2 || low >= 420) {
+        tier = 'Custom Quote Recommended';
+        leadPath = 'A custom quote is the best next step for this job';
+        strategyText = 'This project would benefit from a custom quote so we can account for the full scope accurately.';
+        summary = 'Your project appears to involve multiple factors, so a custom quote will be the most accurate option.';
+      } else if (urgency === 'urgent' || materialsStatus === 'need_full' || readinessLevel === 'needs_help') {
+        tier = 'Estimate with Variables';
+        leadPath = 'Sending photos first will help refine your estimate';
+        strategyText = 'Photos, measurements, or product links will help us give you a more accurate next-step quote.';
+        summary = 'Your project may involve a few variables, so a little more detail will help refine the estimate.';
+      }
+
+      return {
+        low,
+        high,
+        serviceLabel: SERVICE_LABELS[serviceType],
+        propertyLabel: PROPERTY_LABELS[propertyType],
+        scopeLabel: `${jobSize.charAt(0).toUpperCase() + jobSize.slice(1)} / ${taskCountNum} item${taskCountNum > 1 ? 's' : ''}`,
+        leadPath,
+        strategyTitle,
+        strategyText,
+        summary,
+        tier,
+        serviceType,
+        jobSize,
+        taskCountNum,
+        propertyType,
+        readinessLevel,
+        materialsStatus,
+        urgency,
+        hasPhotos,
+        onsiteNeed,
+        siteFactors,
+        addons
+      };
+    }
+
+    function updateEstimateUI() {
+      const result = computeEstimate();
+      document.getElementById('estimateTierPill').textContent = result.tier;
+      document.getElementById('estimatePrice').textContent = `$${result.low.toLocaleString()} – $${result.high.toLocaleString()}`;
+      document.getElementById('estimateSummary').textContent = result.summary;
+      document.getElementById('summaryService').textContent = result.serviceLabel;
+      document.getElementById('summaryScope').textContent = result.scopeLabel;
+      document.getElementById('summaryProperty').textContent = result.propertyLabel;
+      document.getElementById('summaryLeadPath').textContent = result.leadPath;
+      document.getElementById('strategyTitle').textContent = result.strategyTitle;
+      document.getElementById('strategyText').textContent = result.strategyText;
+
+      const customerName = document.getElementById('customerName').value.trim();
+      const customerContact = document.getElementById('customerContact').value.trim();
+      const customerNotes = document.getElementById('customerNotes').value.trim();
+      const businessPhone = '{{ config.BUSINESS_PHONE }}'.replace(/[^\d]/g, '');
+      const businessEmail = '{{ config.BUSINESS_EMAIL }}';
+
+      const messageLines = [
+        'Hi, I used the price estimator and would like to learn more about this job.',
+        '',
+        `Estimated range: $${result.low} - $${result.high}`,
+        `Service: ${result.serviceLabel}`,
+        `Scope: ${result.scopeLabel}`,
+        `Property: ${result.propertyLabel}`,
+        `Recommended next step: ${result.leadPath}`,
+        `Materials: ${document.getElementById('materialsStatus').selectedOptions[0].text}`,
+        `Timing: ${document.getElementById('urgency').selectedOptions[0].text}`,
+        customerName ? `Name: ${customerName}` : '',
+        customerContact ? `Contact: ${customerContact}` : '',
+        customerNotes ? `Notes: ${customerNotes}` : ''
+      ].filter(Boolean).join('\n');
+
+      const whatsappHref = `https://wa.me/${businessPhone}?text=${encodeURIComponent(messageLines)}`;
+      const emailSubject = encodeURIComponent(`Estimator request - ${result.serviceLabel}`);
+      const emailBody = encodeURIComponent(messageLines);
+      const emailHref = `mailto:${businessEmail}?subject=${emailSubject}&body=${emailBody}`;
+
+      document.getElementById('estimatorWhatsAppLink').setAttribute('href', whatsappHref);
+      document.getElementById('estimatorEmailLink').setAttribute('href', emailHref);
+    }
+
+    function updateStepUI() {
+      steps.forEach((step, index) => {
+        step.classList.toggle('active', index === currentStep);
+      });
+
+      const percent = ((currentStep + 1) / steps.length) * 100;
+      progressFill.style.width = `${percent}%`;
+      stepLabel.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+      stepName.textContent = STEP_NAMES[currentStep];
+      prevBtn.disabled = currentStep === 0;
+      nextBtn.textContent = currentStep === steps.length - 1 ? 'Refresh Estimate' : 'Next';
+
+      if (currentStep === steps.length - 1) {
+        updateEstimateUI();
+      }
+    }
+
+    function openEstimator() {
+      estimatorModal.classList.remove('hidden');
+      estimatorModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('menu-open');
+      updateStepUI();
+    }
+
+    function closeEstimator() {
+      estimatorModal.classList.add('hidden');
+      estimatorModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-open');
+    }
+
+    if (taskCount && taskCountValue) {
+      const syncRange = () => {
+        taskCountValue.textContent = taskCount.value;
+      };
+      taskCount.addEventListener('input', syncRange);
+      syncRange();
+    }
+
+    openEstimatorBtn?.addEventListener('click', openEstimator);
+    closeEstimatorBtn?.addEventListener('click', closeEstimator);
+    estimatorModal?.querySelectorAll('[data-close-estimator]').forEach(el => el.addEventListener('click', closeEstimator));
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && estimatorModal && !estimatorModal.classList.contains('hidden')) {
+        closeEstimator();
+      }
+    });
+
+    nextBtn?.addEventListener('click', function () {
+      if (currentStep < steps.length - 1) currentStep += 1;
+      updateStepUI();
+    });
+
+    prevBtn?.addEventListener('click', function () {
+      if (currentStep > 0) currentStep -= 1;
+      updateStepUI();
+    });
+
+    document.querySelectorAll('#estimatorForm input, #estimatorForm select, #estimatorForm textarea').forEach(el => {
+      el.addEventListener('input', updateEstimateUI);
+      el.addEventListener('change', updateEstimateUI);
+    });
+
+    updateEstimateUI();
+    updateStepUI();
+  });
+</script>

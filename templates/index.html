@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config.BUSINESS_NAME }} | Handyman, Property Maintenance & Smart Home Upgrades in South Florida</title>
+    <meta name="description" content="Already On IT LLC provides handyman services, property maintenance, association work, community upkeep, smart home upgrades, and quote-based service in Naranja, Homestead, Kendall, and across South Florida.">
+    <meta name="keywords" content="handyman South Florida, handyman Naranja, property maintenance South Florida, association maintenance, community maintenance, smart home upgrades, home automation installation, property manager handyman, maintenance quotes, handyman Homestead, handyman Kendall">
+    <meta name="robots" content="index, follow">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <style>
+        .floating-whatsapp {
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+            animation: whatsappFloatPulse 2.2s infinite;
+        }
+    
+        .floating-whatsapp:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 16px 32px rgba(37, 211, 102, 0.28);
+        }
+    
+        @keyframes whatsappFloatPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 24px rgba(15, 23, 42, 0.20);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 14px 30px rgba(37, 211, 102, 0.24);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 24px rgba(15, 23, 42, 0.20);
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .floating-whatsapp {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style> 
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap');
+
+        :root {
+            --navy: #1E293B;
+            --navy-dark: #0F172A;
+            --orange: #C05621;
+            --orange-dark: #9C4221;
+            --stone: #FAFAF9;
+            --slate-50: #F8FAFC;
+            --slate-100: #F1F5F9;
+            --slate-200: #E2E8F0;
+            --slate-300: #CBD5E1;
+            --slate-500: #64748B;
+            --slate-700: #334155;
+            --green: #25D366;
+            --green-dark: #1EBE5B;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            max-width: 100%;
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            background-color: var(--stone);
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .site-shell {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .brand small {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            font-weight: 600;
+            color: var(--orange);
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        .bg-hero {
+            background-image:
+                linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.62)),
+                url('https://static.photos/construction/1200x630/42');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .btn-primary,
+        .btn-secondary,
+        .btn-outline,
+        .btn-whatsapp,
+        .contact-action-card {
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+            will-change: transform;
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(156, 66, 33, 0.22);
+        }
+
+        .btn-secondary {
+            background-color: var(--navy);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--navy-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.22);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--green);
+            color: #fff;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(37, 211, 102, 0.24);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--slate-300);
+            background: #fff;
+            color: var(--navy);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(148, 163, 184, 0.16);
+        }
+
+        .nav-link {
+            position: relative;
+            color: #374151;
+            transition: color 0.25s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--navy);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background-color: var(--orange);
+            transition: width 0.25s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            max-width: calc(100vw - 2rem);
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            overflow: hidden;
+            position: relative;
+            min-height: 360px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+        }
+
+        .service-face {
+            width: 100%;
+            height: 100%;
+            padding: 1.5rem;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .service-front {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-back {
+            position: absolute;
+            inset: 0;
+            background: var(--slate-50);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .service-card.active .service-front {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .service-card.active .service-back {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-icon {
+            width: 3rem;
+            height: 3rem;
+            color: #2563EB;
+            margin-bottom: 1rem;
+        }
+
+        .learn-more-btn,
+        .close-card-btn {
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .learn-more-btn {
+            color: #2563EB;
+        }
+
+        .learn-more-btn:hover {
+            color: #1D4ED8;
+        }
+
+        .close-card-btn {
+            color: var(--slate-500);
+            align-self: flex-start;
+            margin-top: 0.75rem;
+        }
+
+        .close-card-btn:hover {
+            color: var(--slate-700);
+        }
+
+        .about-logo-box {
+            background: linear-gradient(180deg, #E5E7EB 0%, #DDE1E7 100%);
+            border-radius: 1rem;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            overflow: hidden;
+        }
+
+        .about-logo-box img {
+            width: 100%;
+            max-width: 620px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 12px 24px rgba(15, 23, 42, 0.08));
+        }
+
+        .logo-caption {
+            color: var(--slate-500);
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .floating-btn {
+            animation: pulse 2s infinite;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.22);
+        }
+
+        .contact-action-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-action-card {
+            min-height: 74px;
+            border-radius: 1rem;
+            padding: 1rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .contact-action-card:hover {
+            transform: translateY(-3px) scale(1.01);
+        }
+
+        .seo-chip {
+            border: 1px solid var(--slate-200);
+            background: #fff;
+            color: var(--slate-700);
+            border-radius: 9999px;
+            padding: 0.65rem 1rem;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .section-kicker {
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .soft-cta {
+            background: linear-gradient(180deg, #FFF7ED 0%, #FFEDD5 100%);
+        }
+
+        .soft-cta-panel {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .premium-panel {
+            background:
+                radial-gradient(circle at top left, rgba(192, 86, 33, 0.08), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.08), transparent 35%),
+                linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .tech-badge {
+            background: #EFF6FF;
+            color: #1D4ED8;
+            border: 1px solid #BFDBFE;
+            border-radius: 9999px;
+            padding: 0.55rem 0.9rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .service-area-card {
+            position: relative;
+            min-height: 420px;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            background: #fff;
+        }
+
+        .service-area-face {
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .service-area-front {
+            position: relative;
+        }
+
+        .service-area-back {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .service-area-card.active .service-area-front {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .service-area-card.active .service-area-back {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-area-image-btn {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .service-area-image-btn img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .service-area-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.38), rgba(15, 23, 42, 0.04));
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 1rem;
+            transition: background 0.22s ease;
+        }
+
+        .service-area-image-btn:hover .service-area-overlay {
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.48), rgba(15, 23, 42, 0.08));
+        }
+
+        .service-area-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 0.9rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #1E293B;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 900px) {
+            .contact-action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .brand {
+                font-size: 1.2rem;
+            }
+
+            .about-logo-box {
+                min-height: 300px;
+                padding: 1.5rem;
+            }
+
+            .service-card {
+                min-height: 380px;
+            }
+
+            .service-area-card {
+                min-height: 340px;
+            }
+
+            .service-area-image-btn img {
+                min-height: 340px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="site-shell">
+
+    <nav class="bg-white/90 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between gap-6">
+                <a href="#" aria-label="{{ config.BUSINESS_NAME }} home" class="shrink-0">
+                    <div class="brand text-xl md:text-2xl">
+                        {{ config.BUSINESS_NAME }}
+                        <small>HANDYMAN • MAINTENANCE • SMART UPGRADES</small>
+                    </div>
+                </a>
+
+                <div id="desktopNav" class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#premium" class="nav-link">Premium</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#testimonials" class="nav-link">Reviews</a>
+                    <a href="#contact" class="btn-primary px-5 py-2 rounded-full font-medium">Request Quote</a>
+                </div>
+
+                <button id="menuButton" class="md:hidden focus:outline-none" aria-label="Toggle menu" type="button">
+                    <i data-feather="menu" class="text-gray-700"></i>
+                </button>
+            </div>
+
+            <div id="mobileMenu" class="mobile-menu hidden md:hidden mt-4 bg-white border border-gray-200 shadow-lg rounded-2xl p-4 space-y-4">
+                <a href="#services" class="block text-gray-700 font-medium">Services</a>
+                <a href="#premium" class="block text-gray-700 font-medium">Premium</a>
+                <a href="#about" class="block text-gray-700 font-medium">About</a>
+                <a href="#testimonials" class="block text-gray-700 font-medium">Reviews</a>
+                <a href="#contact" class="block btn-primary px-5 py-3 rounded-full text-center font-medium">Request Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-hero text-white py-24 md:py-40">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 leading-tight" data-aos="fade-up">
+                Handyman, Property Maintenance & Smart Home Help<br>Across South Florida
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">
+                Reliable repairs, maintenance, association work, community upkeep, and intelligent home upgrades for homeowners, property managers, and communities in Naranja and surrounding areas.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-5" data-aos="fade-up" data-aos-delay="200">
+                <a href="tel:{{ config.BUSINESS_PHONE }}" class="btn-primary px-8 py-4 rounded-full font-medium text-lg">
+                    Call Now
+                </a>
+                <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp px-8 py-4 rounded-full font-medium text-lg">
+                    WhatsApp Us
+                </a>
+                <a href="#contact" class="btn-secondary px-8 py-4 rounded-full font-medium text-lg">
+                    Request Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="section-kicker" data-aos="fade-up">South Florida Services</div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4" data-aos="fade-up">Handyman Services, Property Maintenance & Community Support</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    From home repairs and installations to association maintenance, community upkeep, and recurring property work, we help residential and management clients keep things running smoothly.
+                </p>
+            </div>
+
+            {% set services = [
+                ('tool','General Repairs','Fixing squeaky doors, loose cabinets, drywall patches, trim issues, and everyday repair needs around homes and properties.','Need Repairs Done Right?','We handle the practical fixes that keep homes, rental units, and managed properties in shape.','General Repairs Inquiry','Email About Repairs'),
+                ('home','Home & Property Maintenance','Regular upkeep to keep homes, rental properties, and shared spaces in top condition — pressure washing, touch-ups, inspections, and more.','Keep Your Property in Top Shape','Preventative maintenance helps protect value, reduce complaints, and avoid bigger repairs later.','Property Maintenance Inquiry','Email About Maintenance'),
+                ('tv','TV, Furniture & Installations','Professional TV mounting, furniture assembly, fixture setup, and practical installation work done cleanly and correctly.','Stress-Free Setup Services','We handle the lifting, measuring, mounting, and setup details so the finished result looks right.','Installation Services Inquiry','Email About Setup'),
+                ('droplet','Plumbing Help','Leaky faucets, running toilets, minor plumbing fixes, and maintenance issues that need attention before they become bigger problems.','Stop Those Drips and Leaks','Small plumbing issues can disrupt residents, tenants, and common spaces if left unresolved.','Plumbing Repair Needed','Email About Plumbing'),
+                ('zap','Electrical Fixes','Light fixture installation, outlet and switch replacements, and other small electrical service needs for homes and managed properties.','Safe Electrical Solutions','We handle smaller electrical fixes with attention to safety, presentation, and reliability.','Electrical Work Needed','Email About Electrical'),
+                ('briefcase','Association & Community Work','Maintenance support for HOAs, associations, managed properties, common areas, and recurring community service needs.','Need a Reliable Maintenance Partner?','We also support property managers, associations, and community spaces with quote-based maintenance and handyman work.','Association and Community Work Inquiry','Email About Community Work')
+            ] %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for icon, title, desc, back_title, back_desc, subject, cta in services %}
+                <div class="service-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 75 }}">
+                    <div class="service-face service-front">
+                        <i data-feather="{{ icon }}" class="service-icon"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">{{ title }}</h3>
+                        <p class="text-gray-600">{{ desc }}</p>
+                        <button type="button" class="learn-more-btn mt-5">Click to learn more →</button>
+                    </div>
+
+                    <div class="service-face service-back">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">{{ back_title }}</h3>
+                        <p class="text-gray-600 mb-5">{{ back_desc }}</p>
+
+                        <div class="flex flex-col gap-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <a href="mailto:{{ config.BUSINESS_EMAIL }}?subject={{ subject|replace(' ', '%20') }}"
+                                   class="btn-primary px-4 py-3 rounded-full text-white font-medium text-center">
+                                   Email Us
+                                </a>
+                                <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}?text={{ ('Hi, I would like a quote for ' ~ title)|replace(' ', '%20') }}"
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="btn-whatsapp px-4 py-3 rounded-full text-white font-medium text-center">
+                                   WhatsApp
+                                </a>
+                            </div>
+                            <a href="#contact" class="btn-outline px-4 py-3 rounded-full font-medium text-center">
+                                Request a Quote
+                            </a>
+                            <button type="button" class="close-card-btn">← Back</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="premium" class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="premium-panel rounded-3xl p-8 md:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <div class="section-kicker">Premier Smart Home Services</div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Make Your Home More Intelligent</h2>
+                        <p class="text-gray-600 text-lg mb-6">
+                            Beyond repairs and maintenance, we also help clients modernize their homes with smart home and automation upgrades that make daily living easier, safer, and more efficient.
+                        </p>
+                        <p class="text-gray-600 mb-6">
+                            From video doorbells and smart locks to connected lighting, cameras, Wi-Fi devices, and helpful home technology, we bring a more modern, polished service experience to homes and properties across South Florida.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="tech-badge">Smart Locks</span>
+                            <span class="tech-badge">Video Doorbells</span>
+                            <span class="tech-badge">Lighting Control</span>
+                            <span class="tech-badge">Camera Setup</span>
+                            <span class="tech-badge">Device Installation</span>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#contact" class="btn-secondary px-8 py-4 rounded-full font-semibold text-center">Ask About Upgrades</a>
+                            <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}?text={{ 'Hi, I would like to ask about smart home upgrades.'|replace(' ', '%20') }}"
+                               target="_blank" rel="noopener noreferrer"
+                               class="btn-whatsapp px-8 py-4 rounded-full font-semibold text-center">WhatsApp About Smart Home</a>
+                        </div>
+                    </div>
+
+                    <div data-aos="fade-left">
+                        <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
+                            <div class="section-kicker">Why It Feels Premium</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Modern service for a modern home</h3>
+                            <div class="space-y-4 text-gray-600">
+                                <div class="flex items-start gap-3">
+                                    <i data-feather="check-circle" class="text-green-500 mt-1"></i>
+                                    <p>Cleaner installations and more polished finished results.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-feather="check-circle" class="text-green-500 mt-1"></i>
+                                    <p>Smarter security, convenience, and remote-control options.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-feather="check-circle" class="text-green-500 mt-1"></i>
+                                    <p>Ideal for homeowners, rentals, managed properties, and upgraded communities.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-feather="check-circle" class="text-green-500 mt-1"></i>
+                                    <p>A blend of handyman practicality and up-to-date technology support.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-4xl mb-10" data-aos="fade-up">
+                <div class="section-kicker">Service Area</div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Serving Naranja and All of South Florida</h2>
+                <p class="text-gray-600 mb-5">
+                    Based in Naranja, we serve homeowners, landlords, property managers, associations, and community spaces throughout South Florida. Whether you need handyman help, property maintenance, association work, smart home upgrades, or a quote for recurring service, we are ready to help.
+                </p>
+                <p class="text-gray-600">
+                    Our service area includes Naranja, Homestead, Florida City, Kendall, Cutler Bay, and Palmetto Bay, with support for residential repairs, recurring maintenance, association work, community upkeep, and smart home installation services.
+                </p>
+            </div>
+    
+            <div class="service-area-card service-area-card-wide" id="serviceAreaCard" data-aos="fade-up">
+                <div class="service-area-face service-area-front">
+                    <button type="button" class="service-area-image-btn" id="serviceAreaOpen" aria-label="Open South Florida service area details">
+                        <img
+                            src="{{ url_for('static', filename='images/servicing.png') }}"
+                            alt="Already On IT LLC South Florida service area map showing Naranja, Homestead, Florida City, Kendall, Cutler Bay, and Palmetto Bay for handyman services, property maintenance, association work, community upkeep, and smart home upgrades."
+                            class="w-full h-auto object-cover"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                        <div class="service-area-overlay">
+                            <span class="service-area-badge">Click for details</span>
+                        </div>
+                    </button>
+                </div>
+    
+                <div class="service-area-face service-area-back">
+                    <div class="p-6 md:p-10 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="section-kicker mb-3">Service Area Details</div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">South Florida Coverage</h3>
+                            <p class="text-gray-600 mb-6 max-w-4xl">
+                                Already On IT LLC supports homeowners, property managers, associations, landlords, and community spaces throughout South Florida with handyman services, property maintenance, association work, community upkeep, and smart home upgrades.
+                            </p>
+    
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6 text-sm md:text-base text-gray-700">
+                                <div class="flex items-center"><i data-feather="map-pin" class="w-4 h-4 text-orange-600 mr-2"></i>Naranja</div>
+                                <div class="flex items-center"><i data-feather="map-pin" class="w-4 h-4 text-orange-600 mr-2"></i>Homestead</div>
+                                <div class="flex items-center"><i data-feather="map-pin" class="w-4 h-4 text-orange-600 mr-2"></i>Florida City</div>
+                                <div class="flex items-center"><i data-feather="map-pin" class="w-4 h-4 text-orange-600 mr-2"></i>Kendall</div>
+                                <div class="flex items-center"><i data-feather="map-pin" class="w-4 h-4 text-orange-600 mr-2"></i>Cutler Bay</div>
+                                <div class="flex items-center"><i data-feather="map-pin" class="w-4 h-4 text-orange-600 mr-2"></i>Palmetto Bay</div>
+                            </div>
+    
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="seo-chip">South Florida Handyman</span>
+                                <span class="seo-chip">Property Maintenance</span>
+                                <span class="seo-chip">Association Work</span>
+                                <span class="seo-chip">Community Service</span>
+                                <span class="seo-chip">Smart Home Upgrades</span>
+                                <span class="seo-chip">Property Manager Quotes</span>
+                            </div>
+    
+                            <p class="text-sm text-slate-500">
+                                South Florida service support for residential repair work, property maintenance, association service, community upkeep, and home technology upgrades.
+                            </p>
+                        </div>
+    
+                        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                            <a href="#contact" class="btn-secondary px-5 py-3 rounded-full text-center font-medium">Request Quote</a>
+                            <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}?text={{ 'Hi, I would like a quote for service in South Florida.'|replace(' ', '%20') }}"
+                               target="_blank" rel="noopener noreferrer"
+                               class="btn-whatsapp px-5 py-3 rounded-full text-center font-medium">WhatsApp Us</a>
+                            <button type="button" id="serviceAreaClose" class="btn-outline px-5 py-3 rounded-full font-medium">Back to Map</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <p class="text-sm text-slate-500 mt-4">
+                Service map for handyman, property maintenance, association work, and smart home services in Naranja and surrounding South Florida communities.
+            </p>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2 w-full" data-aos="fade-right">
+                    <div class="about-logo-box">
+                        <img src="{{ url_for('static', filename='images/already_on_it_logo.png') }}" alt="Already On IT logo">
+                    </div>
+                    <p class="logo-caption">Ready, reliable, and already on it.</p>
+                </div>
+
+                <div class="md:w-1/2 w-full" data-aos="fade-left">
+                    <div class="section-kicker">About Us</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">About {{ config.BUSINESS_NAME }}</h2>
+                    <p class="text-gray-600 mb-4">
+                        We are a locally owned and operated handyman and maintenance company serving South Florida with practical, dependable service. We help with residential repair work, property maintenance, association support, community upkeep, smart home upgrades, and quote-based jobs for managers and owners who need responsive help.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Whether the need is a small repair, recurring maintenance, common-area work, intelligent home installation, unit turnover support, or a quote for a larger scope, we approach every job with attention to detail, professionalism, and a strong service mindset.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white rounded-lg shadow-sm p-4 flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span class="text-gray-700">Licensed & Insured</span>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-sm p-4 flex items-center">
+                            <i data-feather="briefcase" class="text-blue-600 mr-2"></i>
+                            <span class="text-gray-700">Quotes for Managers & Associations</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <span class="seo-chip">Handyman Services</span>
+                        <span class="seo-chip">Property Maintenance</span>
+                        <span class="seo-chip">Association Work</span>
+                        <span class="seo-chip">Community Maintenance</span>
+                        <span class="seo-chip">Smart Home Upgrades</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="section-kicker" data-aos="fade-up">Reviews</div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4" data-aos="fade-up">What Our Customers Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Trust, responsiveness, and consistent work matter.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg p-6 shadow-sm" data-aos="fade-up">
+                    <div class="flex items-center mb-4"><div class="text-yellow-500 mr-2">★★★★★</div></div>
+                    <p class="text-gray-700 italic mb-4">"Fixed my leaky faucet and installed new cabinet hardware in no time. Professional, clean, and reasonably priced. Will definitely call again for future projects!"</p>
+                    <div class="flex items-center">
+                        <div class="bg-gray-300 rounded-full w-10 h-10 mr-3"></div>
+                        <div>
+                            <p class="font-medium text-gray-800">Maria G.</p>
+                            <p class="text-sm text-gray-500">Homestead, FL</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4"><div class="text-yellow-500 mr-2">★★★★★</div></div>
+                    <p class="text-gray-700 italic mb-4">"We have trusted Jack and his team for over 4 years to help ensure that our community remains in top shape. They have been dependable, responsive, and professional throughout."</p>
+                    <div class="flex items-center">
+                        <div class="bg-gray-300 rounded-full w-10 h-10 mr-3"></div>
+                        <div>
+                            <p class="font-medium text-gray-800">J. Michael</p>
+                            <p class="text-sm text-gray-500">Community Client</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4"><div class="text-yellow-500 mr-2">★★★★★</div></div>
+                    <p class="text-gray-700 italic mb-4">"Quick response when our rental property needed maintenance help. Fair pricing and quality work. Already scheduled them for additional property support."</p>
+                    <div class="flex items-center">
+                        <div class="bg-gray-300 rounded-full w-10 h-10 mr-3"></div>
+                        <div>
+                            <p class="font-medium text-gray-800">Lisa M.</p>
+                            <p class="text-sm text-gray-500">Property Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="section-kicker text-orange-300" data-aos="fade-up">How It Works</div>
+                <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Faster, More Streamlined Service in 2026</h2>
+                <p class="max-w-3xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">
+                    We use modern communication, faster intake, and more organized quote routing to help clients move from request to response with less back-and-forth.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-white/5 rounded-2xl border border-white/10" data-aos="fade-up">
+                    <div class="bg-white/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="smartphone" class="w-9 h-9 text-orange-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">1. Reach Out Instantly</h3>
+                    <p class="opacity-90">Call, WhatsApp, email, or submit a quote request through the site so we can capture the job details quickly.</p>
+                </div>
+
+                <div class="text-center p-6 bg-white/5 rounded-2xl border border-white/10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="send" class="w-9 h-9 text-orange-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">2. Smarter Quote Direction</h3>
+                    <p class="opacity-90">We use organized intake and clearer communication to route repairs, maintenance requests, and quote needs more efficiently.</p>
+                </div>
+
+                <div class="text-center p-6 bg-white/5 rounded-2xl border border-white/10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="check-square" class="w-9 h-9 text-orange-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">3. Clear Work, Reliable Results</h3>
+                    <p class="opacity-90">Once the scope is clear, we move toward scheduling and completion with a more mainstream, professional client experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 soft-cta">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="soft-cta-panel rounded-3xl p-8 md:p-12 text-center">
+                <div class="section-kicker">Quotes & Contact</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-5">Need a Quote for Your Home, Property, or Community?</h2>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    {{ config.BUSINESS_NAME }} provides handyman services, maintenance support, community work, and smart home upgrades across South Florida for homeowners, landlords, associations, and property managers.
+                </p>
+
+                <div class="contact-action-grid" data-aos="fade-up">
+                    <a href="tel:{{ config.BUSINESS_PHONE }}" class="contact-action-card btn-outline">
+                        <i data-feather="phone"></i>
+                        <span>Call Now</span>
+                    </a>
+
+                    <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}" target="_blank" rel="noopener noreferrer" class="contact-action-card btn-whatsapp">
+                        <i data-feather="message-circle"></i>
+                        <span>WhatsApp Us</span>
+                    </a>
+
+                    <a href="#contact" class="contact-action-card btn-secondary">
+                        <i data-feather="clipboard"></i>
+                        <span>Get Free Quote</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="mb-8 space-y-3">
+                {% for category, message in messages %}
+                <div class="rounded-xl px-4 py-3 {{ 'bg-green-50 text-green-800 border border-green-200' if category == 'success' else 'bg-red-50 text-red-800 border border-red-200' }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <div class="text-center mb-16">
+                <div class="section-kicker">Contact & Quotes</div>
+                <h2 class="text-3xl font-medium text-gray-800 mb-4">Ready to Get Started?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Tell us about your project, maintenance need, smart home upgrade, or property scope and we’ll get back to you promptly.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <div class="space-y-6">
+                        <div class="contact-action-grid">
+                            <a href="tel:{{ config.BUSINESS_PHONE }}" class="contact-action-card btn-primary text-white">
+                                <i data-feather="phone"></i>
+                                <span>Call Now</span>
+                            </a>
+
+                            <a href="mailto:{{ config.BUSINESS_EMAIL }}" class="contact-action-card btn-secondary text-white">
+                                <i data-feather="mail"></i>
+                                <span>Email Us</span>
+                            </a>
+
+                            <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}" target="_blank" rel="noopener noreferrer" class="contact-action-card btn-whatsapp text-white">
+                                <i data-feather="message-circle"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-medium text-gray-800 mb-4">Who We Work With</h3>
+                            <p class="text-gray-600 mb-6">
+                                We serve homeowners, landlords, associations, property managers, community spaces, and clients who need dependable handyman, maintenance, and smart home quotes throughout South Florida.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center"><i data-feather="check" class="text-green-500 mr-3"></i><span class="text-gray-700">Homeowners</span></div>
+                                <div class="flex items-center"><i data-feather="check" class="text-green-500 mr-3"></i><span class="text-gray-700">Property Managers</span></div>
+                                <div class="flex items-center"><i data-feather="check" class="text-green-500 mr-3"></i><span class="text-gray-700">Associations</span></div>
+                                <div class="flex items-center"><i data-feather="check" class="text-green-500 mr-3"></i><span class="text-gray-700">Community Spaces</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Send Us a Message</h3>
+                        <form method="post" action="{{ url_for('contact') }}">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                                <input type="text" name="name" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" name="phone" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" name="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="service" class="block text-gray-700 mb-2">Service Needed</label>
+                                <select name="service" id="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">Select a service</option>
+                                    <option value="General Repairs">General Repairs</option>
+                                    <option value="Home & Property Maintenance">Home & Property Maintenance</option>
+                                    <option value="TV, Furniture & Installations">TV, Furniture & Installations</option>
+                                    <option value="Plumbing Help">Plumbing Help</option>
+                                    <option value="Electrical Fixes">Electrical Fixes</option>
+                                    <option value="Association & Community Work">Association & Community Work</option>
+                                    <option value="Smart Home Upgrades">Smart Home Upgrades</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 mb-2">Details About Your Project</label>
+                                <textarea name="message" id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold transition duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <div class="brand text-2xl text-white">{{ config.BUSINESS_NAME }}</div>
+                    <p class="text-gray-400 mt-2">Handyman, property maintenance, community service, and smart home upgrades across South Florida.</p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2026 {{ config.BUSINESS_NAME }}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div class="fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50">
+        <a
+            href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}?text={{ 'Hi, I would like to ask about your services.'|replace(' ', '%20') }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contact us on WhatsApp"
+            class="floating-whatsapp bg-[#25D366] hover:bg-[#1EBE5B] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl"
+        >
+            <i data-feather="message-circle" class="w-7 h-7"></i>
+        </a>
+    </div> 
+
+
+
+    {% include 'estimator.html' %}
+
+<script>
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', function () {
+                menuOpen = !menuOpen;
+                mobileMenu.classList.toggle('hidden', !menuOpen);
+                document.body.classList.toggle('menu-open', menuOpen);
+
+                const icon = menuButton.querySelector('i');
+                if (icon) {
+                    icon.setAttribute('data-feather', menuOpen ? 'x' : 'menu');
+                    feather.replace();
+                }
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function () {
+                    menuOpen = false;
+                    mobileMenu.classList.add('hidden');
+                    document.body.classList.remove('menu-open');
+                    const icon = menuButton.querySelector('i');
+                    if (icon) {
+                        icon.setAttribute('data-feather', 'menu');
+                        feather.replace();
+                    }
+                });
+            });
+        }
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            const learnBtn = card.querySelector('.learn-more-btn');
+            const closeBtn = card.querySelector('.close-card-btn');
+
+            if (learnBtn) {
+                learnBtn.addEventListener('click', function () {
+                    document.querySelectorAll('.service-card.active').forEach(openCard => {
+                        if (openCard !== card) openCard.classList.remove('active');
+                    });
+                    card.classList.add('active');
+                });
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    card.classList.remove('active');
+                });
+            }
+        });
+
+        const serviceAreaCard = document.getElementById('serviceAreaCard');
+        const serviceAreaOpen = document.getElementById('serviceAreaOpen');
+        const serviceAreaClose = document.getElementById('serviceAreaClose');
+
+        if (serviceAreaCard && serviceAreaOpen && serviceAreaClose) {
+            serviceAreaOpen.addEventListener('click', function () {
+                serviceAreaCard.classList.add('active');
+            });
+
+            serviceAreaClose.addEventListener('click', function () {
+                serviceAreaCard.classList.remove('active');
+            });
+        }
+
+        feather.replace();
+    });
+</script>
+</body>
+</html>
