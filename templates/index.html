@@ -530,7 +530,7 @@
                     <a href="#premium" class="nav-link">Premium</a>
                     <a href="#about" class="nav-link">About</a>
                     <a href="#testimonials" class="nav-link">Reviews</a>
-                    <a href="#contact" class="btn-primary px-5 py-2 rounded-full font-medium">Request Quote</a>
+                    <a href="#contact" class="js-open-estimator btn-primary px-5 py-2 rounded-full font-medium" data-estimator-service="General Quote">Request Quote</a>
                 </div>
 
                 <button id="menuButton" class="md:hidden focus:outline-none" aria-label="Toggle menu" type="button">
@@ -543,7 +543,7 @@
                 <a href="#premium" class="block text-gray-700 font-medium">Premium</a>
                 <a href="#about" class="block text-gray-700 font-medium">About</a>
                 <a href="#testimonials" class="block text-gray-700 font-medium">Reviews</a>
-                <a href="#contact" class="block btn-primary px-5 py-3 rounded-full text-center font-medium">Request Quote</a>
+                <a href="#contact" class="js-open-estimator block btn-primary px-5 py-3 rounded-full text-center font-medium" data-estimator-service="General Quote">Request Quote</a>
             </div>
         </div>
     </nav>
@@ -563,7 +563,7 @@
                 <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp px-8 py-4 rounded-full font-medium text-lg">
                     WhatsApp Us
                 </a>
-                <a href="#contact" class="btn-secondary px-8 py-4 rounded-full font-medium text-lg">
+                <a href="#contact" class="js-open-estimator btn-secondary px-8 py-4 rounded-full font-medium text-lg" data-estimator-service="General Quote">
                     Request Quote
                 </a>
             </div>
@@ -615,7 +615,7 @@
                                    WhatsApp
                                 </a>
                             </div>
-                            <a href="#contact" class="btn-outline px-4 py-3 rounded-full font-medium text-center">
+                            <a href="#contact" class="js-open-estimator btn-outline px-4 py-3 rounded-full font-medium text-center" data-estimator-service="{{ title }}">
                                 Request a Quote
                             </a>
                             <button type="button" class="close-card-btn">← Back</button>
@@ -650,7 +650,7 @@
                         </div>
 
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#contact" class="btn-secondary px-8 py-4 rounded-full font-semibold text-center">Ask About Upgrades</a>
+                            <a href="#contact" class="js-open-estimator btn-secondary px-8 py-4 rounded-full font-semibold text-center" data-estimator-service="Smart Home Upgrades">Ask About Upgrades</a>
                             <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}?text={{ 'Hi, I would like to ask about smart home upgrades.'|replace(' ', '%20') }}"
                                target="_blank" rel="noopener noreferrer"
                                class="btn-whatsapp px-8 py-4 rounded-full font-semibold text-center">WhatsApp About Smart Home</a>
@@ -748,7 +748,7 @@
                         </div>
     
                         <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                            <a href="#contact" class="btn-secondary px-5 py-3 rounded-full text-center font-medium">Request Quote</a>
+                            <a href="#contact" class="js-open-estimator btn-secondary px-5 py-3 rounded-full text-center font-medium" data-estimator-service="South Florida Service Quote">Request Quote</a>
                             <a href="https://wa.me/{{ config.BUSINESS_PHONE | replace('-', '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('+', '') }}?text={{ 'Hi, I would like a quote for service in South Florida.'|replace(' ', '%20') }}"
                                target="_blank" rel="noopener noreferrer"
                                class="btn-whatsapp px-5 py-3 rounded-full text-center font-medium">WhatsApp Us</a>
@@ -912,7 +912,7 @@
                         <span>WhatsApp Us</span>
                     </a>
 
-                    <a href="#contact" class="contact-action-card btn-secondary">
+                    <a href="#contact" class="js-open-estimator contact-action-card btn-secondary" data-estimator-service="General Quote">
                         <i data-feather="clipboard"></i>
                         <span>Get Free Quote</span>
                     </a>
@@ -1131,6 +1131,126 @@
                 serviceAreaCard.classList.remove('active');
             });
         }
+
+        function setEstimatorService(serviceName) {
+            if (!serviceName) return;
+
+            const possibleServiceFields = [
+                '#estimator_service',
+                '#estimator-service',
+                '#quote_service',
+                '#quote-service',
+                '#job_type',
+                '#job-type',
+                '[name="estimator_service"]',
+                '[name="quote_service"]',
+                '[name="job_type"]',
+                '[name="service"]'
+            ];
+
+            for (const selector of possibleServiceFields) {
+                const field = document.querySelector(selector);
+                if (!field) continue;
+
+                if (field.tagName === 'SELECT') {
+                    const matchingOption = Array.from(field.options).find(option => {
+                        return option.value === serviceName || option.textContent.trim() === serviceName;
+                    });
+                    if (matchingOption) {
+                        field.value = matchingOption.value;
+                    }
+                } else {
+                    field.value = serviceName;
+                }
+
+                field.dispatchEvent(new Event('change', { bubbles: true }));
+                field.dispatchEvent(new Event('input', { bubbles: true }));
+                break;
+            }
+        }
+
+        function openQuoteEstimator(serviceName) {
+            setEstimatorService(serviceName);
+
+            const globalOpeners = [
+                'openEstimator',
+                'openQuoteEstimator',
+                'launchEstimator',
+                'launchQuoteEstimator',
+                'showEstimator',
+                'showQuoteEstimator'
+            ];
+
+            for (const openerName of globalOpeners) {
+                if (typeof window[openerName] === 'function' && window[openerName] !== openQuoteEstimator) {
+                    window[openerName]();
+                    return;
+                }
+            }
+
+            const existingEstimatorTrigger = document.querySelector([
+                '#openEstimator',
+                '#open-estimator',
+                '#estimatorOpen',
+                '#estimator-open',
+                '#quoteEstimatorOpen',
+                '#quote-estimator-open',
+                '#floatingEstimatorButton',
+                '#floating-estimator-button',
+                '.open-estimator',
+                '.estimator-open',
+                '.estimator-trigger',
+                '.quote-estimator-trigger',
+                '.floating-estimator',
+                '.floating-quote',
+                '.quote-float',
+                '.quote-tab',
+                '[data-open-estimator]',
+                '[data-estimator-open]',
+                '[data-estimator-trigger]'
+            ].join(', '));
+
+            if (existingEstimatorTrigger && !existingEstimatorTrigger.classList.contains('js-open-estimator')) {
+                existingEstimatorTrigger.click();
+                return;
+            }
+
+            const estimatorPanel = document.querySelector([
+                '#estimatorModal',
+                '#estimator-modal',
+                '#quoteEstimatorModal',
+                '#quote-estimator-modal',
+                '#estimator',
+                '#quote-estimator',
+                '.estimator-modal',
+                '.quote-estimator-modal',
+                '.estimator-panel',
+                '.quote-estimator-panel'
+            ].join(', '));
+
+            if (estimatorPanel) {
+                estimatorPanel.classList.remove('hidden', 'invisible', 'opacity-0', 'pointer-events-none');
+                estimatorPanel.classList.add('active', 'open', 'is-open');
+                estimatorPanel.removeAttribute('aria-hidden');
+                document.body.classList.add('overflow-hidden');
+                estimatorPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        window.openQuoteEstimator = openQuoteEstimator;
+
+        document.querySelectorAll('.js-open-estimator').forEach(trigger => {
+            trigger.addEventListener('click', function (event) {
+                event.preventDefault();
+                openQuoteEstimator(trigger.dataset.estimatorService || trigger.dataset.service || 'General Quote');
+            });
+        });
 
         feather.replace();
     });
